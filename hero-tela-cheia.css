@@ -39,7 +39,7 @@
 .cinema-page .cinema-hero .cinema-hero-landscape,
 .cinema-page .cinema-hero.is-chablis .cinema-hero-landscape {
   object-position: 58% 50%;
-  filter: saturate(.85) brightness(calc(.86 - var(--p) * .5));
+  filter: saturate(.85);
   transform-origin: 60% 55%;
   animation: hero-drift 38s ease-in-out infinite alternate;
   will-change: transform;
@@ -47,11 +47,19 @@
 .cinema-page .cinema-hero.is-video-poster .cinema-hero-landscape {
   filter: blur(3px) saturate(.6) brightness(calc(.5 - var(--p) * .3));
 }
+/* escurecimento ao rolar: um véu preto (só opacidade, sem refazer filtro a cada quadro) */
+.cinema-page .cinema-hero .cinema-hero-veu {
+  position: absolute; inset: 0; background: #000; pointer-events: none;
+  opacity: calc(.14 + var(--p) * .5);
+}
+.cinema-page .cinema-hero.is-video-poster:not(.has-video) .cinema-hero-veu { opacity: 0; }
 @keyframes hero-drift {
   from { transform: translate3d(0, calc(var(--p) * 14%), 0) scale(1.03); }
   to   { transform: translate3d(-2%, calc(var(--p) * 14%), 0) scale(1.12); }
 }
 .cinema-hero.is-paused .cinema-hero-landscape { animation-play-state: paused; }
+/* com o vídeo por cima, a foto não precisa continuar se movendo */
+.cinema-hero.has-video .cinema-hero-landscape { animation-play-state: paused; }
 
 /* degradê de leitura à esquerda e fusão com a página embaixo */
 .cinema-page .cinema-hero-frame::after {
@@ -86,7 +94,21 @@
 }
 .cinema-carousel-controls > .hero-square { border-radius: 3px; font-size: 0; }
 .hero-square:hover { background: #d0b58b; color: #13221d; }
-.cinema-page .cinema-hero-frame .cinema-landscape-credit { bottom: 104px; }
+.cinema-page .cinema-hero-frame .cinema-landscape-credit { bottom: 86px; }
+
+/* cartão do filme: altura fixa (o título cabe em até duas linhas) e miniatura 16:9,
+   que recorta exatamente as faixas pretas das miniaturas 4:3 do YouTube */
+.cinema-page .cinema-hero-player {
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  height: 96px;
+  box-sizing: border-box;
+}
+.cinema-page .cinema-hero-player-art { aspect-ratio: 16 / 9; width: 112px; }
+.cinema-page .cinema-hero-player-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+.cinema-page .cinema-hero-player-info strong {
+  font-size: 1.45rem; line-height: 1.05;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .cinema-page .cinema-hero .cinema-hero-landscape { animation: none; transform: none; }
@@ -110,8 +132,9 @@
 @media (max-width: 620px) {
   .cinema-hero .cinema-hero-content h1 { font-size: clamp(42px, 12.5vw, 60px); }
   .cinema-hero-intro { font-size: 13px; line-height: 1.6; }
-  .cinema-hero-player { grid-template-columns: 80px minmax(0, 1fr) auto; }
-  .cinema-hero-player-info strong { font-size: 1.35rem; }
+  .cinema-page .cinema-hero-player { grid-template-columns: 96px minmax(0, 1fr) auto; height: 86px; }
+  .cinema-page .cinema-hero-player-art { width: 96px; }
+  .cinema-page .cinema-hero-player-info strong { font-size: 1.3rem; }
   .cinema-hero .cinema-carousel-controls { flex-wrap: nowrap; }
 }
 
@@ -126,11 +149,11 @@
   .cinema-page .cinema-header.is-solid + .cinema-mobile-menu { top: 70px; }
 }
 
-/* vídeo em loop do destaque de Chablis: por cima da foto, entra em fusão quando começa a tocar */
+/* vídeo em loop do destaque: por cima da foto, entra em fusão quando começa a tocar.
+   A saturação .85 já vem gravada no vídeo; o escurecimento vem do véu. */
 .cinema-page .cinema-hero .cinema-hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 58% 50%;
-  filter: saturate(.85) brightness(calc(.86 - var(--p) * .5));
   opacity: 0; transition: opacity 1.2s ease; pointer-events: none;
 }
 .cinema-page .cinema-hero.has-video .cinema-hero-video { opacity: 1; }
