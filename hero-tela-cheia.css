@@ -125,3 +125,14 @@
 @media (max-width: 850px) {
   .cinema-page .cinema-header.is-solid + .cinema-mobile-menu { top: 70px; }
 }
+
+/* vídeo em loop do destaque de Chablis: por cima da foto, entra em fusão quando começa a tocar */
+.cinema-page .cinema-hero .cinema-hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 58% 50%;
+  filter: saturate(.85) brightness(calc(.86 - var(--p) * .5));
+  opacity: 0; transition: opacity 1.2s ease; pointer-events: none;
+}
+.cinema-page .cinema-hero.has-video .cinema-hero-video { opacity: 1; }
+@media (max-width: 850px) { .cinema-page .cinema-hero .cinema-hero-video { object-position: 62% 50%; } }
+@media (prefers-reduced-motion: reduce) { .cinema-page .cinema-hero .cinema-hero-video { display: none; } }
