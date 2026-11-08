@@ -18,6 +18,8 @@
 .sobre-nomes b { font: 400 clamp(24px, 2.3vw, 30px)/1.15 "Instrument Serif", Georgia, serif; color: var(--paper); transition: color .25s; }
 .sobre-nomes span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: right; }
 .sobre-nomes a:hover b { color: var(--sand); }
+.sobre-anos { margin-left: 8px; font: 400 12px/1 "DM Sans", Arial, sans-serif; letter-spacing: .06em; color: var(--muted); vertical-align: 3px; }
+.sobre-memoria { margin-top: 22px !important; padding-left: 16px; border-left: 1px solid var(--sand); font: italic 400 19px/1.55 "Instrument Serif", Georgia, serif !important; color: #d6cfc3 !important; }
 
 .sobre-formatos { display: grid; gap: 0; }
 .sobre-formatos a { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid #3f3832; text-decoration: none; }
