@@ -1,0 +1,60 @@
+/* RENDEZVOUS masthead: a firm, uppercase editorial signature. */
+.cinema-brand,
+.cinema-header .cinema-brand,
+.cinema-footer-bottom .cinema-brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 35px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.05;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  font-kerning: normal;
+}
+
+.cinema-brand span {
+  margin-top: 10px;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .2em;
+}
+
+/* Optional second direction for a future brand comparison. */
+body.brand-maison .cinema-brand {
+  font-family: "Baskerville", "Baskerville Old Face", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 1150px) {
+  .cinema-header .cinema-brand,
+  .cinema-footer-bottom .cinema-brand {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 620px) {
+  .cinema-header .cinema-brand,
+  .cinema-footer-bottom .cinema-brand {
+    font-size: 25px;
+    letter-spacing: .025em;
+  }
+
+  .cinema-brand span {
+    font-size: 6px;
+    letter-spacing: .16em;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cinema-header .cinema-brand,
+  .cinema-footer-bottom .cinema-brand {
+    font-size: 22px;
+    letter-spacing: .015em;
+  }
+}

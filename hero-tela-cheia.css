@@ -1,0 +1,127 @@
+/* Hero em tela cheia (referência de plataforma de streaming, só no hero).
+   A imagem — futuro trecho de vídeo — ocupa a tela inteira em qualquer largura;
+   o menu fica por cima; ao rolar, o hero escurece e desaparece. O resto do site não muda. */
+
+/* --- Menu: fixo; transparente sobre o hero, sólido depois --- */
+.cinema-page .cinema-header {
+  position: fixed;
+  transition: background-color .35s ease, height .35s ease, border-color .35s ease;
+}
+.cinema-page .cinema-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -60px;
+  background: linear-gradient(rgba(8, 17, 19, .6), rgba(8, 17, 19, 0));
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity .35s ease;
+}
+.cinema-page .cinema-header.is-solid {
+  background: rgba(17, 25, 25, .96);
+  backdrop-filter: blur(10px);
+  height: 76px;
+  border-bottom-color: rgba(242, 239, 231, .12);
+}
+.cinema-page .cinema-header.is-solid::before { opacity: 0; }
+
+/* --- Hero: sempre a tela inteira, conteúdo ancorado embaixo --- */
+.cinema-page .cinema-hero {
+  --p: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  max-height: none;
+  padding: 120px 7% 40px;
+  background: #0b1412;
+  overflow: hidden;
+}
+
+.cinema-page .cinema-hero .cinema-hero-landscape,
+.cinema-page .cinema-hero.is-chablis .cinema-hero-landscape {
+  object-position: 58% 50%;
+  filter: saturate(.85) brightness(calc(.86 - var(--p) * .5));
+  transform-origin: 60% 55%;
+  animation: hero-drift 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.cinema-page .cinema-hero.is-video-poster .cinema-hero-landscape {
+  filter: blur(3px) saturate(.6) brightness(calc(.5 - var(--p) * .3));
+}
+@keyframes hero-drift {
+  from { transform: translate3d(0, calc(var(--p) * 14%), 0) scale(1.03); }
+  to   { transform: translate3d(-2%, calc(var(--p) * 14%), 0) scale(1.12); }
+}
+.cinema-hero.is-paused .cinema-hero-landscape { animation-play-state: paused; }
+
+/* degradê de leitura à esquerda e fusão com a página embaixo */
+.cinema-page .cinema-hero-frame::after {
+  background:
+    linear-gradient(80deg, rgba(8, 17, 19, .82) 0%, rgba(8, 17, 19, .5) 36%, rgba(8, 17, 19, 0) 66%),
+    linear-gradient(0deg, #14211d 0%, rgba(20, 33, 29, .7) 14%, rgba(20, 33, 29, 0) 42%);
+}
+
+/* o texto, o destaque e os controles se dissolvem ao rolar */
+.cinema-hero-content,
+.cinema-hero-player,
+.cinema-carousel-controls,
+.cinema-landscape-credit {
+  opacity: calc(1 - var(--p) * 1.8);
+}
+.cinema-hero-content { transform: translate3d(0, calc(var(--p) * -40px), 0); }
+
+/* controles ocupam a linha toda, com o quadradinho de pausa à direita */
+.cinema-page .cinema-hero .cinema-carousel-controls { width: auto; }
+.hero-square {
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d0b58b80;
+  border-radius: 3px;
+  background: #0f201b70;
+  color: #f2efe7;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.cinema-carousel-controls > .hero-square { border-radius: 3px; font-size: 0; }
+.hero-square:hover { background: #d0b58b; color: #13221d; }
+.cinema-page .cinema-hero-frame .cinema-landscape-credit { bottom: 104px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-page .cinema-hero .cinema-hero-landscape { animation: none; transform: none; }
+  .cinema-hero-content { transform: none; }
+  .hero-square { display: none; }
+}
+
+/* --- Tablet e celular: continua tela cheia; tudo empilhado na base --- */
+@media (max-width: 850px) {
+  .cinema-page .cinema-hero {
+    min-height: 560px;
+    padding: 110px 7% 18px;
+  }
+  .cinema-page .cinema-hero .cinema-hero-landscape,
+  .cinema-page .cinema-hero.is-chablis .cinema-hero-landscape { object-position: 62% 50%; }
+  .cinema-page .cinema-hero-frame::after {
+    background: linear-gradient(0deg, #14211d 2%, rgba(20, 33, 29, .86) 34%, rgba(20, 33, 29, .1) 68%, rgba(8, 17, 19, .55) 100%);
+  }
+  .cinema-page .cinema-header.is-solid { height: 70px; }
+}
+@media (max-width: 620px) {
+  .cinema-hero .cinema-hero-content h1 { font-size: clamp(42px, 12.5vw, 60px); }
+  .cinema-hero-intro { font-size: 13px; line-height: 1.6; }
+  .cinema-hero-player { grid-template-columns: 80px minmax(0, 1fr) auto; }
+  .cinema-hero-player-info strong { font-size: 1.35rem; }
+  .cinema-hero .cinema-carousel-controls { flex-wrap: nowrap; }
+}
+
+/* telas baixas (celular deitado, notebook pequeno): solta o texto de apoio */
+@media (max-height: 700px) {
+  .cinema-hero-intro { display: none; }
+}
+
+/* menu do celular acompanha o menu fixo, mesmo depois de rolar */
+.cinema-page .cinema-mobile-menu { position: fixed; z-index: 19; }
+@media (max-width: 850px) {
+  .cinema-page .cinema-header.is-solid + .cinema-mobile-menu { top: 70px; }
+}

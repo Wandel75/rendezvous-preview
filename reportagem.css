@@ -1,0 +1,463 @@
+/* Grandes reportagens em formato de revista digital (primeira: Pétrus).
+   Três larguras: texto (620), mídia (700, largura nativa das fotos) e largo (1040).
+   Tipos: Instrument Serif para títulos e números, Georgia para o texto, DM Sans para rótulos.
+   O azul da argila de Pétrus é a única cor de destaque. */
+.reportagem-page {
+  --t: 620px; --m: 700px; --w: 1040px;
+  --papel: #f5f1e9; --tinta: #26211c; --cinza: #6b6258; --linha: #d9d0c1; --faixa: #ece6da;
+  --azul: #557c99; --azul-claro: #a8c4d8; --noite: #151d23; --ouro: #9a6a37;
+  background: var(--papel); color: var(--tinta); overflow-x: clip;
+}
+.rv { display: block; width: 100%; max-width: none; margin: 0; padding: 0 0 56px; }
+.rv-rotulo { margin: 0 0 14px; color: var(--ouro); font: 700 11px/1.3 "DM Sans", Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+
+/* --- abertura --- */
+.rv-capa { background: var(--noite); color: #f2efe7; padding: clamp(20px, 3vw, 40px) 20px clamp(40px, 6vw, 72px); }
+.rv-capa-foto { max-width: var(--w); margin: 0 auto; }
+.rv-capa-foto img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #1a2026; }
+.rv-capa-foto figcaption { margin-top: 10px; padding-left: 12px; border-left: 2px solid #d9bd98; font: 13px/1.5 "DM Sans", Arial, sans-serif; color: #aea79a; }
+.rv-capa-foto .rv-credito { color: #8d867a; }
+.rv-capa-titulo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 12px 48px; align-items: end; max-width: var(--w); margin: clamp(28px, 4vw, 48px) auto 0; }
+.rv-capa-titulo .rv-rotulo { grid-column: 1 / -1; color: #d9bd98; margin: 0; }
+.rv-capa h1 { margin: 0; font: 400 clamp(60px, 9vw, 124px)/.88 "Instrument Serif", Georgia, serif; letter-spacing: -.035em; }
+.rv-capa h1 em { color: var(--azul-claro); }
+.rv-linha-fina { margin: 0 0 18px; font: italic 400 clamp(19px, 1.6vw, 22px)/1.45 Georgia, serif; color: #d7d0c3; }
+.rv-assinatura { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding-top: 14px; border-top: 1px solid #f2efe733; font: 500 12px/1.5 "DM Sans", Arial, sans-serif; color: #aea79a; }
+.rv-assinatura span:first-child { color: #f2efe7; }
+
+/* --- índice --- */
+.rv-indice { width: min(100% - 40px, var(--w)); margin: 0 auto; padding: 26px 0 22px; border-bottom: 1px solid var(--linha); }
+.rv-indice ol { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.rv-indice a { display: inline-flex; gap: 8px; align-items: baseline; color: inherit; font: 500 14px/1.5 "DM Sans", Arial, sans-serif; text-decoration: none; }
+.rv-indice a span { color: var(--ouro); font-size: 11px; font-weight: 700; }
+.rv-indice a:hover { color: var(--azul); }
+
+/* --- coluna e larguras --- */
+.rv-texto { padding-top: clamp(36px, 5vw, 64px); }
+.rv-texto > * { width: min(100% - 40px, var(--t)); margin-inline: auto; }
+.rv-texto > .rv-m { width: min(100% - 40px, var(--m)); }
+.rv-texto > .rv-w, .rv-w { width: min(100% - 40px, var(--w)); margin-inline: auto; }
+.rv-texto > p { margin-top: 0; margin-bottom: 1.2em; font: 400 19px/1.74 Georgia, "Times New Roman", serif; color: #2b251f; hyphens: auto; text-wrap: pretty; }
+.rv-texto > p.rv-abertura::first-letter { float: left; margin: .07em .09em 0 0; color: var(--azul); font: 400 5.1em/.8 "Instrument Serif", Georgia, serif; }
+.rv-texto > p.rv-pergunta { font: 700 16px/1.55 "DM Sans", Arial, sans-serif; color: var(--azul); }
+.rv-texto a { color: var(--azul); text-underline-offset: .2em; }
+.rv-texto h2 { margin-top: 2.6em; margin-bottom: .9em; font: 400 clamp(38px, 4.2vw, 52px)/1.02 "Instrument Serif", Georgia, serif; letter-spacing: -.015em; }
+.rv-texto h2 span { display: block; width: 44px; margin-bottom: 14px; padding-top: 12px; border-top: 2px solid var(--tinta); color: var(--ouro); font: 700 12px/1 "DM Sans", Arial, sans-serif; letter-spacing: .16em; }
+
+/* intertítulos, notas da redação, contexto e glossário */
+.rv-texto h3.rv-inter { margin-top: 2.1em; margin-bottom: .7em; font: 400 clamp(26px, 2.6vw, 31px)/1.12 "Instrument Serif", Georgia, serif; color: var(--tinta); text-wrap: balance; }
+.rv-texto > p.rv-nredacao { margin-top: -.4em; margin-bottom: 1.6em; padding: 10px 0 10px 14px; border-left: 2px solid var(--ouro); font: 14.5px/1.6 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-nredacao b { color: var(--tinta); font-weight: 700; }
+.rv-contexto { margin-top: 0; margin-bottom: 2.4em; padding: 16px 0 4px; border-top: 1px solid var(--linha); }
+.rv-contexto dl, .rv-glossario dl { margin: 0; }
+.rv-contexto div { margin-bottom: 12px; }
+.rv-contexto dt, .rv-glossario dt { font: 700 13.5px/1.4 "DM Sans", Arial, sans-serif; color: var(--tinta); }
+.rv-contexto dd, .rv-glossario dd { margin: 2px 0 0; font: 14px/1.55 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-glossario { margin-top: 3.4em; margin-bottom: 3em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-texto .rv-glossario h2 { margin: 0 0 .7em; font-size: clamp(32px, 3.4vw, 42px); }
+.rv-glossario dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 40px; }
+@media (max-width: 640px) {
+  .rv-capa { padding-inline: 0; }
+  .rv-capa-foto img { aspect-ratio: 562 / 639; }
+  .rv-capa-foto figcaption { margin-inline: 20px; }
+  .rv-capa-titulo { padding-inline: 20px; }
+  .rv-glossario dl { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* legenda única para tudo */
+.rv-foto figcaption, .rv-seq figcaption li, .rv-azul-foto figcaption {
+  font: 13px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza);
+}
+.rv-credito { margin-left: 8px; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.rv-credito::before { content: "© "; }
+
+/* foto isolada: sempre 7:3, largura de mídia */
+.rv-foto { margin-top: 2.3em; margin-bottom: 2.4em; }
+.rv-foto img { display: block; width: 100%; height: auto; aspect-ratio: 7 / 3; object-fit: cover; background: #e3dccf; }
+.rv-foto figcaption { margin-top: 10px; padding-left: 12px; border-left: 2px solid var(--azul); }
+
+/* sequência: três quadrados iguais */
+.rv-seq { margin-top: 2.6em; margin-bottom: 2.8em; }
+.rv-seq-fotos, .rv-seq figcaption ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.rv-seq-fotos li, .rv-galeria li { margin: 0; padding: 0; line-height: 0; }
+.rv-seq-fotos button, .rv-galeria button { position: relative; display: block; width: 100%; aspect-ratio: 1; overflow: hidden; padding: 0; border: 0; background: #e3dccf; cursor: zoom-in; }
+.rv-seq-fotos img, .rv-galeria img { display: block; width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; transition: filter .25s ease; }
+.rv-seq-fotos button:hover img, .rv-galeria button:hover img { filter: brightness(1.06) saturate(1.05); }
+.rv-seq-fotos b { position: absolute; left: 10px; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #151d23cc; color: #f2efe7; font: 700 11px "DM Sans", Arial, sans-serif; }
+.rv-seq figcaption { margin-top: 10px; }
+.rv-seq figcaption li { display: block; margin: 0; }
+.rv-seq figcaption li b { margin-right: 6px; color: var(--azul); font-weight: 700; }
+
+/* citação */
+.rv-citacao { margin-top: 2.2em; margin-bottom: 2.3em; padding: 0; text-align: center; }
+.rv-citacao::before { content: ""; display: block; width: 44px; height: 2px; margin: 0 auto 22px; background: var(--azul); }
+.rv-citacao p { margin: 0 0 14px; color: var(--azul); font: italic 400 clamp(32px, 3.6vw, 44px)/1.1 "Instrument Serif", Georgia, serif; text-wrap: balance; }
+.rv-citacao cite { font: 700 11px/1 "DM Sans", Arial, sans-serif; font-style: normal; letter-spacing: .16em; text-transform: uppercase; color: var(--cinza); }
+
+/* números */
+.rv-numeros { margin-top: 2.4em; margin-bottom: 2.6em; padding: 22px 0 6px; border-top: 2px solid var(--tinta); }
+.rv-numeros.is-escuro { padding: 26px 28px 24px; border: 0; background: var(--noite); color: #f2efe7; }
+.rv-numeros.is-escuro .rv-rotulo { color: #d9bd98; }
+.rv-numeros-grade { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+.rv-numeros-grade > div { padding: 0 18px; border-left: 1px solid var(--linha); }
+.rv-numeros.is-escuro .rv-numeros-grade > div { border-color: #f2efe726; }
+.rv-numeros-grade > div:first-child { padding-left: 0; border-left: 0; }
+.rv-numeros-grade b { display: block; color: var(--azul); font: 400 clamp(38px, 4.2vw, 52px)/1 "Instrument Serif", Georgia, serif; letter-spacing: -.02em; white-space: nowrap; }
+.rv-numeros.is-escuro .rv-numeros-grade b { color: var(--azul-claro); }
+.rv-numeros-grade span { display: block; margin-top: 6px; font: 700 10.5px/1.3 "DM Sans", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.rv-numeros-grade p { margin: 6px 0 0; font: 13px/1.45 "DM Sans", Arial, sans-serif; opacity: .78; }
+
+/* barras */
+.rv-barras { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 2.3em; margin-bottom: 2.4em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-barras-titulo { margin: 0; font: 400 24px/1.1 "Instrument Serif", Georgia, serif; }
+.rv-barras-nota { margin: 4px 0 16px; font: 13px/1.45 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-barra { display: grid; grid-template-columns: 92px 1fr auto; gap: 12px; align-items: center; margin-bottom: 10px; font: 13px "DM Sans", Arial, sans-serif; }
+.rv-barra i { position: relative; display: block; height: 8px; background: #e4ddd0; }
+.rv-barra i::before { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 100%); background: #ab9d88; }
+.rv-barra.is-petrus i::before { background: var(--azul); }
+.rv-barra b { font-weight: 700; white-space: nowrap; }
+.rv-barra.is-petrus span, .rv-barra.is-petrus b { color: var(--azul); font-weight: 700; }
+
+/* --- infográfico --- */
+.rv-texto > .rv-info { width: 100%; margin: 3em 0; padding: clamp(40px, 6vw, 80px) 20px; background: var(--faixa); }
+.rv-info-dentro { max-width: var(--w); margin: 0 auto; }
+.rv-info-cabeca { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 48px; align-items: end; padding-bottom: 26px; border-bottom: 1px solid var(--tinta); }
+.rv-info-cabeca .rv-rotulo { grid-column: 1 / -1; }
+.rv-info-cabeca h3 { margin: 0; font: 400 clamp(44px, 5.6vw, 76px)/.95 "Instrument Serif", Georgia, serif; letter-spacing: -.025em; }
+.rv-info-cabeca h3 em { color: var(--azul); }
+.rv-info-cabeca > p:last-child { margin: 0; font: 17px/1.6 Georgia, serif; }
+.rv-info-par { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 44px; }
+.rv-modulo { margin: 40px 0 0; }
+.rv-modulo-cabeca { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font: 700 11px/1 "DM Sans", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.rv-modulo-cabeca b { display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid var(--azul); border-radius: 50%; color: var(--azul); letter-spacing: 0; }
+.rv-svg { display: block; width: 100%; height: auto; font-family: "DM Sans", Arial, sans-serif; }
+.rv-nota, .rv-legenda-mapa { margin: 10px 0 0; font: 12.5px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-legenda-mapa { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.rv-sw { display: inline-block; width: 14px; height: 10px; border-radius: 6px; background: #5f84a0; }
+.rv-sw.is-ponto { width: 6px; height: 6px; margin-left: 12px; border-radius: 50%; background: var(--tinta); }
+.rv-fonte { margin: 36px 0 0; padding-top: 14px; border-top: 1px solid #cfc6b6; font: 12.5px/1.6 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+
+/* mapa */
+.m-fundo { fill: #f2eee6; }
+.m-viz { fill: #e2dbcd; stroke: #f2eee6; stroke-width: 1.6; }
+.m-pomerol { fill: #fbf9f4; stroke: var(--tinta); stroke-width: .9; }
+.m-titulo { font: italic 400 30px "Instrument Serif", Georgia, serif; fill: #b5a891; }
+.m-comuna { font-size: 9.5px; font-weight: 700; letter-spacing: .22em; fill: #9a8e7a; }
+.m-halo { fill: #5f84a0; opacity: .13; }
+.m-argila { fill: #5f84a0; stroke: #fbf9f4; stroke-width: 1.5; }
+.m-est { fill: var(--tinta); }
+.m-lbl { font-size: 11px; font-weight: 500; fill: var(--tinta); }
+.m-sub { font-size: 10.5px; fill: var(--cinza); }
+.m-vila { fill: var(--cinza); }
+.m-petrus { fill: #fff; stroke: var(--noite); stroke-width: 2; }
+.m-petrus-lbl { font: 400 25px "Instrument Serif", Georgia, serif; fill: var(--noite); }
+.m-guia { fill: none; stroke: var(--tinta); stroke-width: .8; }
+.m-escala path { fill: none; stroke: var(--tinta); stroke-width: 1; }
+.m-escala text { font-size: 9.5px; fill: var(--cinza); }
+.m-loc-caixa { fill: #fbf9f4; stroke: #cfc6b6; }
+.m-loc-titulo { font-size: 8.5px; font-weight: 700; letter-spacing: .2em; fill: #9a8e7a; }
+.m-loc-dep { fill: #e2dbcd; stroke: #b5a891; stroke-width: .6; }
+.m-loc-bdx { fill: var(--tinta); }
+.m-loc-pt { fill: #5f84a0; stroke: #fff; stroke-width: 1.4; }
+.m-loc-lbl { font-size: 9.5px; fill: var(--tinta); }
+
+/* corte */
+.c-bg-graves { fill: #e6d9c0; } .c-pt-graves { fill: #c2b190; }
+.c-bg-argila { fill: #6a8ba4; } .c-estrato { stroke: #5b7b94; stroke-width: .8; }
+.c-bg-areia { fill: #c99c6a; } .c-pt-areia { fill: #a97b4c; }
+.c-graves { fill: url(#p-graves); }
+.c-argila { fill: url(#p-argila); }
+.c-areia { fill: url(#p-areia); }
+.c-solo { fill: #3e3127; }
+.c-superficie { fill: none; stroke: #2a2119; stroke-width: 1.2; }
+.c-borda { fill: none; stroke: var(--tinta); stroke-width: .8; }
+.c-tronco { stroke: #4c5d36; stroke-width: 1.6; stroke-linecap: round; }
+.c-folha { fill: #7c9157; }
+.c-raiz { fill: none; stroke: #2a2119; stroke-width: .9; stroke-linecap: round; opacity: .9; }
+.c-guia { fill: none; stroke: var(--tinta); stroke-width: .7; }
+.c-ponto { fill: var(--tinta); }
+.c-titulo { font-size: 13px; font-weight: 700; fill: var(--tinta); }
+.c-sub { font-size: 12px; fill: #5d554b; }
+.c-petrus { font: 400 24px "Instrument Serif", Georgia, serif; fill: var(--noite); }
+
+/* linha do tempo */
+.t-era { fill: #d8cfbf; }
+.t-era.is-eoceno { fill: #5f84a0; }
+.t-era-lbl { font-size: 9.5px; font-weight: 700; letter-spacing: .18em; fill: #8f8574; }
+.t-era-lbl.is-eoceno { fill: #3f6580; }
+.t-tick { stroke: #8f8574; }
+.t-ma { font-size: 10.5px; fill: var(--cinza); }
+.t-guia { stroke: var(--tinta); stroke-width: .7; }
+.t-ponto { fill: #ab9d88; stroke: var(--faixa); stroke-width: 2.5; }
+.t-ponto.is-azul { fill: #5f84a0; }
+.t-lbl { font: 400 22px "Instrument Serif", Georgia, serif; fill: var(--tinta); }
+.t-sub { font-size: 12px; fill: var(--cinza); }
+
+/* por que azul */
+.rv-azul-foto { margin: 0 0 18px; }
+.rv-azul-foto img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.rv-azul-foto figcaption { margin-top: 8px; }
+.rv-azul-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.rv-chip span { display: block; height: 54px; }
+.rv-chip.is-oxidado span { background: linear-gradient(135deg, #cf9358, #94542a); }
+.rv-chip.is-reduzido span { background: linear-gradient(135deg, #9cbad0, #557c99); }
+.rv-chip b { display: block; margin: 8px 0 2px; font: 400 26px/1 "Instrument Serif", Georgia, serif; }
+.rv-chip p { margin: 0; font: 13px/1.45 "DM Sans", Arial, sans-serif; color: #4d453c; }
+.rv-azul-nota { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #cfc6b6; font: 14px/1.55 "DM Sans", Arial, sans-serif; }
+
+/* --- galeria e ampliação --- */
+.rv-galeria { margin-top: clamp(48px, 7vw, 88px); padding-top: 22px; border-top: 2px solid var(--tinta); }
+.rv-galeria h2 { margin: 0 0 22px; font: 400 clamp(34px, 4vw, 48px)/1 "Instrument Serif", Georgia, serif; }
+.rv-galeria ol { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.rv-fim { margin: 18px 0 0; font: italic 16px/1.6 Georgia, serif; color: var(--cinza); }
+.rv-fim a { color: var(--azul); }
+.rv-lightbox { width: 100vw; max-width: none; height: 100vh; max-height: none; margin: 0; padding: 0; border: 0; background: #0d1216f5; color: #f2efe7; }
+.rv-lightbox::backdrop { background: transparent; }
+.rv-lightbox figure { display: grid; place-items: center; align-content: center; gap: 14px; height: 100%; margin: 0; padding: 60px 70px; }
+.rv-lightbox img { display: block; max-width: min(100%, 980px); max-height: calc(100vh - 160px); width: auto; height: auto; }
+.rv-lightbox figcaption { max-width: 700px; text-align: center; font: 14px/1.5 "DM Sans", Arial, sans-serif; color: #cfc8bb; }
+.rv-lightbox button { position: absolute; width: 48px; height: 48px; border: 1px solid #f2efe740; border-radius: 50%; background: transparent; color: #f2efe7; font-size: 20px; cursor: pointer; }
+.rv-lightbox button:hover { background: #f2efe71a; }
+.rv-lb-ant { left: 14px; top: calc(50% - 24px); }
+.rv-lb-prox { right: 14px; top: calc(50% - 24px); }
+.rv-lb-fechar { right: 14px; top: 14px; }
+.rv-proxima { width: min(100% - 40px, var(--w)) !important; margin: 48px auto 0 !important; }
+
+@media (max-width: 900px) {
+  .rv-capa-titulo, .rv-info-cabeca, .rv-info-par { grid-template-columns: minmax(0, 1fr); }
+  .rv-info-par { gap: 0; }
+  .rv-galeria ol { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 640px) {
+  .rv-texto > p { font-size: 18px; }
+  .rv-numeros-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
+  .rv-numeros-grade > div:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .rv-barras { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .rv-seq-fotos { gap: 6px; }
+  .rv-seq figcaption ol { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .rv-galeria ol { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .rv-rolagem { overflow-x: auto; overscroll-behavior-x: contain; margin-inline: -20px; padding-inline: 20px; }
+  .rv-rolagem .rv-svg { min-width: 760px; }
+  .rv-rolagem.is-mapa .rv-svg { min-width: 560px; }
+  .rv-rolagem::after { content: "arraste para o lado →"; display: block; margin-top: 6px; font: 12px "DM Sans", Arial, sans-serif; color: var(--cinza); position: sticky; left: 0; }
+  .rv-sw.is-ponto { margin-left: 0; }
+  .rv-lightbox figure { padding: 60px 10px; }
+  .rv-lb-ant, .rv-lb-prox { top: auto; bottom: 18px; }
+}
+
+/* as imagens dos módulos não herdam margens do texto corrido */
+.rv img { margin: 0; }
+
+/* --- imagens anotadas (relevo IGN, bloco 3D, cadastro): rótulos em HTML posicionados em % --- */
+.rv-anot { position: relative; width: 100%; overflow: hidden; background: #e3dccf; }
+.rv-anot > img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.rv-anot-guias { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
+.rv-anot-guias line { stroke: var(--tinta); stroke-width: 1; }
+.rv-a { position: absolute; z-index: 2; display: flex; flex-direction: column; gap: 1px; white-space: nowrap; pointer-events: none;
+  font: 500 12.5px/1.25 "DM Sans", Arial, sans-serif; color: var(--tinta); }
+.rv-a small { font-size: 11.5px; font-weight: 400; opacity: .86; }
+.rv-a b { font-weight: 700; }
+.rv-a.is-claro { text-shadow: 0 0 3px #f5f1e9, 0 0 3px #f5f1e9, 0 0 6px #f5f1e9; }
+.rv-a-serif { font: 400 30px/1 "Instrument Serif", Georgia, serif !important; }
+.rv-a.is-bloco { padding: 6px 10px; background: #f5f1e9ee; border-left: 2px solid var(--tinta); text-shadow: none; }
+.rv-a.is-bloco b { font-size: 13px; }
+.rv-a.is-centro { align-items: center; border-left: 0; border-bottom: 2px solid var(--tinta); }
+.rv-a.is-italico { font: italic 400 22px/1 "Instrument Serif", Georgia, serif; }
+.rv-a.is-caps { font-size: 11px; font-weight: 700; letter-spacing: .2em; line-height: 1.9; }
+.rv-a.is-escuro-foto { color: #fff; font-weight: 600; text-shadow: 0 1px 3px #000d; }
+.rv-a.is-pill { align-items: center; padding: 4px 9px; border-radius: 4px; background: var(--cor); color: #fff; box-shadow: 0 1px 4px #0006; }
+.rv-a.is-pill b { font-size: 12.5px; }
+.rv-a.is-pill small { font-size: 10.5px; }
+.rv-a.is-pill.is-petrus { padding: 7px 14px; }
+.rv-a.is-pill.is-petrus b { font: 400 26px/1 "Instrument Serif", Georgia, serif; }
+.rv-a.is-argila { border-left-color: #1e3c5a; }
+.rv-a.is-argila b { color: #1e3c5a; }
+.rv-a.is-divisa { text-shadow: 0 0 3px #f5f1e9, 0 0 3px #f5f1e9, 0 0 6px #f5f1e9; }
+.rv-escala { position: absolute; z-index: 2; left: 2.2%; bottom: 3%; height: 5px; border: 1px solid var(--tinta); border-top: 0; }
+.rv-escala small { position: absolute; left: 0; bottom: 8px; white-space: nowrap; font: 11px "DM Sans", Arial, sans-serif; text-shadow: 0 0 3px #f5f1e9, 0 0 3px #f5f1e9; }
+.rv-norte { position: absolute; z-index: 2; right: 2%; top: 2.5%; padding: 3px 8px; background: #f5f1e9e6; font: 700 12px "DM Sans", Arial, sans-serif; }
+.rv-loc { position: absolute; z-index: 2; left: 1.8%; top: 2.5%; width: 12%; height: auto; }
+.rv-sw.is-curva { width: 24px; height: 0; border-radius: 0; border-top: 2px solid #78644a; background: none; }
+.rv-sw.is-vinha { width: 18px; height: 12px; border-radius: 0; background: repeating-linear-gradient(45deg, #76844f 0 1px, #f0e6cf 1px 5px); }
+.rv-legenda-mapa .rv-sw:not(:first-child) { margin-left: 14px; }
+
+/* por que azul, agora em largura cheia */
+.rv-azul { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 40px; align-items: start; }
+.rv-azul .rv-azul-foto { grid-row: span 2; margin: 0; }
+.rv-lead-curto { max-width: 70ch; margin: -4px 0 22px; font: 16px/1.6 Georgia, serif; color: #3a332c; }
+
+/* outras argilas azuis */
+.rv-argila-grupo { margin: 26px 0 12px; font: 700 10.5px/1 "DM Sans", Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza); }
+.rv-argilas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 28px; margin: 0; padding: 0; list-style: none; }
+.rv-argilas li { display: flex; flex-direction: column; gap: 7px; padding-top: 12px; border-top: 2px solid var(--tinta); }
+.rv-argilas h4 { margin: 0; font: 400 24px/1.05 "Instrument Serif", Georgia, serif; }
+.rv-argilas p { margin: 0; font: 14px/1.5 "DM Sans", Arial, sans-serif; color: #3a332c; }
+.rv-argilas .rv-argila-onde { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ouro); }
+.rv-argila-fonte { display: flex; align-items: center; gap: 10px; font-size: 12.5px !important; }
+.rv-argila-fonte a { color: var(--azul); }
+.rv-selo { padding: 2px 8px; border-radius: 999px; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.rv-selo.is-forte { background: #3f6580; }
+.rv-selo.is-media { background: #6f8496; }
+.rv-selo.is-fraca { background: #9a8f80; }
+
+/* o cadastro: quem é dono de cada parcela */
+.rv-props { margin-top: 3em; margin-bottom: 3em; padding-top: 22px; border-top: 2px solid var(--tinta); }
+.rv-props h3 { margin: 0 0 12px; font: 400 clamp(38px, 4.6vw, 58px)/1 "Instrument Serif", Georgia, serif; letter-spacing: -.02em; }
+.rv-props h3 em { color: var(--azul); }
+.rv-props-lead { max-width: 68ch; margin: 0 0 22px; font: 17px/1.6 Georgia, serif; }
+.rv-props-lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 44px; margin: 22px 0 0; padding: 0; list-style: none; }
+.rv-props-lista li { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--linha); }
+.rv-props-cor { width: 14px; height: 14px; margin-top: 4px; border-radius: 3px; background: var(--cor); }
+.rv-props-lista li.is-hachura .rv-props-cor { border: 1px solid #463e34; background: repeating-linear-gradient(45deg, #463e34 0 1px, #f5f1e9 1px 4px); }
+.rv-props-nome, .rv-props-ha { display: flex; flex-direction: column; gap: 2px; }
+.rv-props-nome b { font: 400 21px/1.1 "Instrument Serif", Georgia, serif; }
+.rv-props-nome small, .rv-props-ha small { font: 11.5px/1.45 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-props-ha { align-items: flex-end; }
+.rv-props-ha b { font: 700 15px "DM Sans", Arial, sans-serif; }
+
+@media (max-width: 900px) {
+  .rv-argilas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rv-azul { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .rv-azul .rv-azul-foto { grid-row: auto; }
+}
+@media (max-width: 640px) {
+  .rv-rolagem .rv-anot { min-width: 760px; }
+  .rv-rolagem .rv-anot.is-cadastro { min-width: 700px; }
+  .rv-argilas, .rv-props-lista { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- La Tour (Clos de Vougeot) --- */
+.rv-capa-foto img.is-latour { object-position: 50% 40%; }
+.rv-barras.is-larga { grid-template-columns: minmax(0, 1fr); }
+.rv-barras.is-larga .rv-barra { grid-template-columns: minmax(150px, 230px) 1fr auto; }
+.rv-a.is-pill.is-ouro { --cor: #9a7a46; }
+.rv-a.is-dourado { border-left-color: #9a7a46; }
+.rv-a.is-cota { padding: 2px 6px; background: #26211cd9; color: #f5f1e9; font: 700 11.5px/1.3 "DM Sans", Arial, sans-serif; }
+.rv-a.is-vertical { writing-mode: vertical-rl; font-size: 16px; }
+.rv-sw.is-latour { border-radius: 2px; background: #284c70; }
+.rv-sw.is-confrerie { border-radius: 2px; background: #b08a4a; }
+.rv-sw.is-pj { border-radius: 2px; background: #e3d6bc; outline: 1px solid #cdbfa4; }
+.rv-sw.is-pf { border-radius: 0; background: repeating-linear-gradient(45deg, #6a5e4e 0 1px, #f0ebe2 1px 5px); }
+.rv-props-dados { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 28px; }
+.rv-props-dados .rv-barras { margin: 0; }
+.rv-props-resumo { display: grid; gap: 18px; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-props-resumo p { margin: 0; font: 14px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-props-resumo b { display: block; color: var(--azul); font: 400 40px/1 "Instrument Serif", Georgia, serif; }
+
+.rv-piramide { display: grid; gap: 6px; margin: 18px 0 0; padding: 0; list-style: none; }
+.rv-piramide li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.rv-pir-degrau { justify-self: center; display: grid; gap: 2px; padding: 14px 16px; background: #e3d6bc; text-align: center; font: 13px/1.35 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-pir-degrau b { color: var(--tinta); font: 400 22px/1.1 "Instrument Serif", Georgia, serif; }
+.rv-piramide .is-topo .rv-pir-degrau { width: 38%; background: #284c70; color: #d8e3ec; }
+.rv-piramide .is-topo .rv-pir-degrau b { color: #fff; }
+.rv-piramide .is-meio .rv-pir-degrau { width: 70%; background: #cbb88f; }
+.rv-piramide .is-base .rv-pir-degrau { width: 100%; }
+.rv-piramide li p { margin: 0; display: grid; gap: 2px; font: 15px/1.45 Georgia, serif; }
+.rv-piramide li p small { font: 700 10.5px/1.3 "DM Sans", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--ouro); }
+
+.rv-crono { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 28px; margin: 18px 0 0; padding: 0; list-style: none; }
+.rv-crono li { padding-top: 10px; border-top: 1px solid var(--linha); }
+.rv-crono li.is-latour { border-top: 2px solid var(--azul); }
+.rv-crono b { display: block; margin-bottom: 4px; font: 400 26px/1 "Instrument Serif", Georgia, serif; color: var(--tinta); }
+.rv-crono li.is-latour b { color: var(--azul); }
+.rv-crono p { margin: 0; font: 13.5px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+
+.rv-arvore-caixa { margin-top: 2.3em; margin-bottom: 2.4em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-arvore { position: relative; display: grid; gap: 0; margin: 0; padding: 0 0 0 26px; list-style: none; }
+.rv-arvore::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 10px; width: 2px; background: var(--linha); }
+.rv-arvore li { position: relative; padding: 0 0 18px; }
+.rv-arvore li::before { content: ""; position: absolute; left: -25px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--papel); border: 2px solid var(--ouro); }
+.rv-arvore li:last-child::before { background: var(--azul); border-color: var(--azul); }
+.rv-arv-geracao { margin: 0; font: 700 10.5px/1.3 "DM Sans", Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro); }
+.rv-arvore h4 { margin: 2px 0 2px; font: 400 24px/1.15 "Instrument Serif", Georgia, serif; }
+.rv-arvore li:last-child h4 { color: var(--azul); }
+.rv-arvore li p:last-child { margin: 0; font: 14px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+
+.rv-vv-caixa { margin-top: 2.3em; margin-bottom: 2.4em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.vv-tit { font: 400 22px "Instrument Serif", Georgia, serif; fill: var(--tinta); }
+.vv-sub { font: 13px "DM Sans", Arial, sans-serif; fill: var(--cinza); }
+.vv-res { font: 700 13px "DM Sans", Arial, sans-serif; fill: var(--azul); }
+.vv-res.is-alerta { fill: #9a4a37; }
+.vv-bago { fill: #3d2f4a; }
+.vv-bago.is-inchado { fill: #6e5482; }
+.vv-haste { stroke: #6b5a3c; stroke-width: 2; fill: none; }
+.vv-div { stroke: var(--linha); stroke-width: 1; }
+
+.rv-vinhos { margin-top: 2.3em; margin-bottom: 2.4em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-vinhos-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.rv-vinhos-cor { margin: 0 0 8px; font: 700 11px/1.3 "DM Sans", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.rv-vinhos-cor.is-tinto { color: #7d2a35; }
+.rv-vinhos-cor.is-branco { color: #9a7a2a; }
+.rv-vinhos ul { margin: 0; padding: 0; list-style: none; }
+.rv-vinhos li { padding: 7px 0; border-top: 1px solid var(--linha); font: 400 17px/1.3 "Instrument Serif", Georgia, serif; }
+.rv-vinhos .rv-foto { margin: 22px 0 0; }
+
+.rv-filme { margin-top: 0; margin-bottom: 2.4em; }
+.rv-filme a { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 18px; align-items: center; color: inherit; text-decoration: none; border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha); padding: 12px 0; }
+.rv-filme img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.rv-filme span { display: grid; gap: 4px; font: 14px/1.45 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-filme small { font-weight: 700; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro); }
+.rv-filme b { color: var(--tinta); font: 400 26px/1.05 "Instrument Serif", Georgia, serif; }
+.rv-filme a:hover b { color: var(--azul); }
+.rv-glos-sub { margin-top: 28px !important; }
+
+@media (max-width: 900px) {
+  .rv-crono { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rv-props-dados { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .rv-capa-foto img.is-latour { object-position: 80% 50%; }
+  .rv-crono { grid-template-columns: minmax(0, 1fr); }
+  .rv-piramide li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .rv-piramide .rv-pir-degrau { justify-self: stretch; width: auto !important; }
+  .rv-vinhos-grade { grid-template-columns: minmax(0, 1fr); }
+  .rv-filme a { grid-template-columns: 120px minmax(0, 1fr); }
+  .rv-barras.is-larga .rv-barra { grid-template-columns: minmax(0, 1fr) auto; }
+  .rv-barras.is-larga .rv-barra i { grid-column: 1 / -1; grid-row: 2; }
+}
+.rv-props .rv-anot.is-cadastro { max-width: 760px; margin-inline: auto; }
+@media (max-width: 640px) { .rv-rolagem .rv-anot.is-retrato { min-width: 520px; } }
+
+/* --- Hospices de Beaune (2015): a cor dos telhados vidrados do Hôtel-Dieu --- */
+.reportagem-page.is-hospices { --azul: #9c3b26; --azul-claro: #e3ab5f; --ouro: #8a6a1f; }
+.rv-foto.is-natural img { aspect-ratio: auto; }
+.rv-foto.is-retrato { width: min(100% - 40px, 440px); }
+.rv-foto.is-retrato img { aspect-ratio: auto; }
+.rv-barras-pe { margin: 12px 0 0; font: 12.5px/1.5 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-crono-caixa { margin-top: 2.4em; margin-bottom: 2.6em; padding-top: 18px; border-top: 2px solid var(--tinta); }
+.rv-crono-caixa .rv-crono { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.rv-audio { margin-top: 2.2em; margin-bottom: 2.6em; padding: 22px 24px 14px; background: var(--noite); color: #f2efe7; }
+.rv-audio .rv-rotulo { color: var(--azul-claro); margin-bottom: 6px; }
+.rv-audio figcaption { margin-bottom: 14px; font: 14px/1.5 "DM Sans", Arial, sans-serif; color: #c9c2b5; }
+.rv-audio audio { display: block; width: 100%; }
+.rv-audio-caps { list-style: none; margin: 12px 0 0; padding: 0; }
+.rv-audio-caps button { width: 100%; min-height: 44px; display: flex; gap: 16px; align-items: center; padding: 0; border: 0; border-top: 1px solid #f2efe71f; background: none; color: #ece6da; font: 15px/1.3 "DM Sans", Arial, sans-serif; text-align: left; cursor: pointer; }
+.rv-audio-caps button span { min-width: 3.2ch; color: var(--azul-claro); font-variant-numeric: tabular-nums; font-size: 13px; }
+.rv-audio-caps button:hover { color: var(--azul-claro); }
+
+.rv-barrica h2 { margin: 0 0 30px; font: 400 clamp(44px, 5.6vw, 76px)/.95 "Instrument Serif", Georgia, serif; letter-spacing: -.025em; }
+.rv-barrica h2 em { color: var(--azul); }
+.rv-barrica-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--tinta); }
+.rv-barrica-passo { display: grid; align-content: start; gap: 6px; padding: 26px 24px 8px; border-left: 1px solid var(--linha); }
+.rv-barrica-passo:first-child { padding-left: 0; border-left: 0; }
+.rv-barrica-passo svg { width: 74px; height: 92px; fill: none; stroke: var(--tinta); stroke-width: 2.4; margin-bottom: 8px; }
+.rv-barrica-passo svg .aro { stroke: var(--azul); stroke-width: 4; }
+.rv-barrica-passo b { font: 400 30px/1.05 "Instrument Serif", Georgia, serif; color: var(--tinta); }
+.rv-barrica-passo p { margin: 0; font: 14px/1.55 "DM Sans", Arial, sans-serif; color: var(--cinza); }
+.rv-garrafas { display: grid; grid-template-columns: repeat(12, 10px); gap: 6px 6px; height: 92px; align-content: end; margin-bottom: 8px; }
+.rv-garrafas i { display: block; width: 10px; height: 38px; border-radius: 4px 4px 2px 2px; background: #3a2f27; clip-path: polygon(35% 0, 65% 0, 65% 28%, 100% 42%, 100% 100%, 0 100%, 0 42%, 35% 28%); }
+.rv-barrica-num { display: block; margin: 18px 0 14px; font: 400 clamp(56px, 6vw, 84px)/.9 "Instrument Serif", Georgia, serif; color: var(--azul); letter-spacing: -.02em; }
+.rv-reparte { margin-top: 34px; }
+.rv-reparte-barra { display: flex; gap: 3px; }
+.rv-reparte-barra span { flex: var(--f); min-height: 64px; padding: 12px 14px; box-sizing: border-box; background: #e7dfd1; font: 13.5px/1.4 "DM Sans", Arial, sans-serif; color: var(--tinta); }
+.rv-reparte-barra span:first-child { background: var(--noite); color: #ece6da; }
+.rv-reparte-barra b { display: block; margin-bottom: 4px; font: 400 26px/1 "Instrument Serif", Georgia, serif; color: var(--azul); }
+.rv-reparte-barra span:first-child b { color: var(--azul-claro); }
+@media (max-width: 760px) {
+  .rv-barrica-grade { grid-template-columns: minmax(0, 1fr); }
+  .rv-barrica-passo { padding: 22px 0 14px; border-left: 0; border-top: 1px solid var(--linha); }
+  .rv-barrica-passo:first-child { border-top: 0; }
+  .rv-reparte-barra { flex-direction: column; }
+  .rv-crono-caixa .rv-crono { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

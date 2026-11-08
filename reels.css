@@ -1,0 +1,41 @@
+/* Curtas do Caderno: fileira compacta, do mais recente ao mais antigo, que cresce toda semana */
+.curtas { background: #182222; padding-block: clamp(44px, 6vw, 80px); border-top: 1px solid #ffffff14; }
+.curtas-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: end; gap: 16px clamp(24px, 5vw, 70px); margin-bottom: 28px; }
+.curtas-head h2 { font: 400 clamp(40px, 4.6vw, 70px)/1 "Instrument Serif", Georgia, serif; margin: 10px 0 0; letter-spacing: -.02em; }
+.curtas-intro { margin: 0; max-width: 46ch; color: #d8d0c2; }
+.curtas-nav { display: flex; gap: 8px; }
+.curtas-nav button { width: 44px; height: 44px; border: 1px solid #d0b58b80; border-radius: 50%; background: transparent; color: #f2efe7; font-size: 19px; cursor: pointer; }
+.curtas-nav button:hover { background: #d0b58b; color: #13221d; }
+
+/* a fileira começa alinhada ao texto e sangra até a borda direita da tela */
+.curtas-row {
+  --edge: calc(max(0px, (100% - 1440px) / 2) + min(100%, 1440px) * var(--wrap-pad, .06));
+  list-style: none; margin: 0; padding: 0 0 14px var(--edge);
+  display: grid; grid-auto-flow: column; grid-auto-columns: clamp(150px, 15vw, 210px); gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--edge);
+  scrollbar-width: thin; scrollbar-color: #d0b58b33 transparent;
+}
+.curtas-row > li { scroll-snap-align: start; }
+.curtas-row > li:last-child { margin-right: 5vw; }
+.curtas-card { position: relative; display: block; aspect-ratio: 9 / 16; overflow: hidden; background: #0b100e; color: #f2efe7; text-decoration: none; }
+.curtas-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s ease, filter .45s ease; filter: saturate(.9); }
+.curtas-card::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, #000000d9, transparent); }
+.curtas-card:hover img { transform: scale(1.04); filter: saturate(1); }
+.curtas-copy { position: absolute; z-index: 1; left: 12px; right: 12px; bottom: 12px; display: grid; gap: 4px; }
+.curtas-copy small { color: #d0b58b; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+.curtas-copy strong { font: 400 1.25rem/1.05 "Instrument Serif", Georgia, serif; }
+.curtas-new { position: absolute; z-index: 1; top: 10px; left: 10px; padding: 3px 8px; background: #d0b58b; color: #13221d; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.curtas-more { display: grid; place-content: center; gap: 8px; padding: 14px; text-align: center; border: 1px solid #d0b58b66; background: #0f201b; }
+.curtas-more::after { display: none; }
+.curtas-more span:first-child { color: #d0b58b; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+.curtas-more strong { font: 400 1rem/1.15 "Instrument Serif", Georgia, serif; }
+.curtas-more:hover { background: #d0b58b; color: #13221d; }
+.curtas-more:hover span:first-child { color: #13221d; }
+
+@media (prefers-reduced-motion: reduce) { .curtas-card img { transition: none; } }
+@media (max-width: 760px) {
+  .curtas-head { grid-template-columns: minmax(0, 1fr); }
+  .curtas-nav { display: none; }
+  .curtas-row { grid-auto-columns: 44vw; }
+}
+@media (max-width: 620px) { .curtas-row { --wrap-pad: .07; } }

@@ -1,0 +1,85 @@
+/* Widget da página RENDEZVOUS no Facebook, no alto do hero da home.
+   Anatomia do plugin de página do Facebook (avatar, nome, seguidores, Seguir Página),
+   em vidro sobre a paisagem. Fica fora do conteúdo dos slides: o carrossel troca o
+   destaque e o widget permanece, com um reflexo de luz a cada troca. */
+
+.fbw-hero {
+  position: absolute;
+  z-index: 6;
+  top: clamp(124px, 16vh, 168px);
+  right: 6%;
+  width: 340px;
+  opacity: calc(1 - var(--p, 0) * 1.8);
+}
+
+.fbw {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .07) 55%, rgba(255, 255, 255, .04) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, .28);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 -1px 0 rgba(255, 255, 255, .06);
+  color: #fff !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), box-shadow .45s, border-color .45s;
+  animation: fbw-entra 1s cubic-bezier(.2, .7, .2, 1) .8s backwards;
+}
+.fbw:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, .42); box-shadow: 0 36px 80px rgba(0, 0, 0, .36), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.fbw:focus-visible { outline: 2px solid #d0b58b; outline-offset: 4px; }
+
+.fbw-topo { display: flex; align-items: center; gap: 12px; padding: 18px 18px 16px; }
+.fbw-avatar { position: relative; flex: none; width: 54px; height: 54px; }
+.fbw-avatar img { display: block; width: 54px; height: 54px; border-radius: 50%; object-fit: cover; background: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, .9), 0 6px 16px rgba(0, 0, 0, .25); }
+.fbw-selo { position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px; padding: 1px; box-sizing: border-box; border-radius: 50%; background: #fff; color: #0866ff; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+.fbw-nome { display: grid; gap: 4px; min-width: 0; }
+.fbw-nome b { font-size: 16px; font-weight: 700; letter-spacing: .01em; text-shadow: 0 1px 8px rgba(0, 0, 0, .25); }
+.fbw-nome small { font-size: 12.5px; color: rgba(255, 255, 255, .84); }
+
+.fbw-numero { display: flex; align-items: baseline; gap: 10px; margin: 0 18px; padding: 14px 0 16px; border-top: 1px solid rgba(255, 255, 255, .18); border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.fbw-numero b { font: 400 46px/1 "Instrument Serif", Georgia, serif; letter-spacing: -.8px; text-shadow: 0 2px 14px rgba(0, 0, 0, .25); }
+.fbw-numero i { font: italic 400 24px/1 "Instrument Serif", Georgia, serif; color: rgba(255, 255, 255, .88); }
+
+.fbw-seguir { display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; margin: 14px 18px 18px; border-radius: 10px; background: #0866ff; color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 8px 22px rgba(8, 102, 255, .35), inset 0 1px 0 rgba(255, 255, 255, .25); transition: background .25s; }
+.fbw-seguir svg { width: 17px; height: 17px; flex: none; }
+.fbw:hover .fbw-seguir { background: #1a74ff; }
+
+/* reflexo de luz que atravessa o vidro na entrada e a cada troca de slide */
+.fbw-brilho { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(112deg, transparent 32%, rgba(255, 255, 255, .26) 48%, rgba(255, 255, 255, .08) 54%, transparent 66%); transform: translateX(-130%); }
+.fbw.is-brilho .fbw-brilho { animation: fbw-brilho 1.3s cubic-bezier(.3, .6, .2, 1); }
+
+@keyframes fbw-entra {
+  from { opacity: 0; transform: translateY(16px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes fbw-brilho {
+  from { transform: translateX(-130%); }
+  to { transform: translateX(130%); }
+}
+
+/* celular: uma linha compacta sob o cabeçalho, com avatar, número e botão */
+@media (max-width: 850px) {
+  .fbw-hero { top: 92px; left: 7%; right: 7%; width: auto; }
+  .fbw { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; grid-template-areas: "av nome btn" "av num btn"; align-items: center; column-gap: 12px; row-gap: 4px; padding: 10px 10px 10px 12px; border-radius: 14px; }
+  .fbw-topo { display: contents; }
+  .fbw-avatar, .fbw-avatar img { width: 46px; height: 46px; }
+  .fbw-avatar { grid-area: av; }
+  .fbw-selo { width: 19px; height: 19px; right: -3px; bottom: -3px; }
+  .fbw-nome { grid-area: nome; align-self: end; }
+  .fbw-nome b { font-size: 14px; }
+  .fbw-nome small { display: none; }
+  .fbw-numero { grid-area: num; align-self: start; margin: 0; padding: 0; border: 0; gap: 6px; }
+  .fbw-numero b { font-size: 24px; letter-spacing: -.3px; }
+  .fbw-numero i { font-size: 15px; }
+  .fbw-seguir { grid-area: btn; height: 38px; margin: 0; padding: 0 14px; font-size: 13.5px; }
+  .fbw-pag { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fbw { animation: none; transition: none; }
+  .fbw:hover { transform: none; }
+  .fbw.is-brilho .fbw-brilho { animation: none; }
+}
