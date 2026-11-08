@@ -7,7 +7,7 @@
   }[character]));
 
   const hero = document.querySelector('.cinema-hero');
-  const defaultHeroIds = ['OMC0Q5PHGa8', 'VACW0HGiJU4', 'fHlo60GJWpM', 'Fa8v7zUV4DQ'];
+  const defaultHeroIds = ['OMC0Q5PHGa8', 'wNMc4HsDYaM', 'VACW0HGiJU4', 'fHlo60GJWpM', 'Fa8v7zUV4DQ'];
   const heroIds = Array.isArray(data.heroVideoIds) ? data.heroVideoIds : defaultHeroIds;
   const slides = heroIds.map(id => data.videos.find(video => video.id === id)).filter(Boolean);
   const heroImages = {
@@ -38,6 +38,7 @@
     hero.querySelector('.cinema-eyebrow').textContent = video.region + ' · Encontros RENDEZVOUS';
     const headlines = {
       OMC0Q5PHGa8: 'Chablis,<br><em>o Chardonnay mais célebre, por inteiro</em>',
+      wNMc4HsDYaM: 'O Grande Leilão dos Hospices de Beaune,<br><em>visto por dentro</em>',
       VACW0HGiJU4: 'Caroline FREY,<br><em>do Haut-Médoc ao Rhône</em>',
       fHlo60GJWpM: 'Château Margaux 2012,<br><em>na taça de Paul PONTALLIER</em>',
       Fa8v7zUV4DQ: 'Saint-Émilion,<br><em>por Véronique CORPORANDY</em>'
