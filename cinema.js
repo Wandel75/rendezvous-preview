@@ -37,10 +37,10 @@
     hero.classList.toggle('is-video-poster', !heroImages[video.id]);
     hero.querySelector('.cinema-eyebrow').textContent = video.region + ' · Encontros RENDEZVOUS';
     const headlines = {
-      OMC0Q5PHGa8: 'Chablis.<br><em>O lugar do vinho.</em>',
-      VACW0HGiJU4: 'Caroline Frey.<br><em>Entre dois mundos.</em>',
-      fHlo60GJWpM: 'A arte<br>de <em>Margaux.</em>',
-      Fa8v7zUV4DQ: 'Saint-Émilion.<br><em>Por quem conhece.</em>'
+      OMC0Q5PHGa8: 'Chablis,<br><em>o Chardonnay mais célebre, por inteiro</em>',
+      VACW0HGiJU4: 'Caroline FREY,<br><em>do Haut-Médoc ao Rhône</em>',
+      fHlo60GJWpM: 'Château Margaux 2012,<br><em>na taça de Paul PONTALLIER</em>',
+      Fa8v7zUV4DQ: 'Véronique CORPORANDY,<br><em>maître de chai do Soutard</em>'
     };
     hero.querySelector('h1').innerHTML = headlines[video.id] || escape(video.title);
     hero.querySelector('.cinema-hero-intro').textContent = video.description;
@@ -53,7 +53,7 @@
     player.href = destination;
     player.setAttribute('aria-label', action + ' · ' + video.title);
     playerImage.src = video.image;
-    playerInfo.textContent = (series ? 'SÉRIE' : 'EM CARTAZ') + ' · ' + video.duration;
+    playerInfo.textContent = (series ? 'SÉRIE' : 'FILME') + ' · ' + video.duration;
     playerTitle.textContent = video.title;
     hero.querySelector('.cinema-landscape-credit').textContent = picture[1];
     status.textContent = String(activeSlide + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');

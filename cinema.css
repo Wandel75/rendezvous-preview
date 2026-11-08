@@ -1474,7 +1474,7 @@
 
 .cinema-seo-index{padding-top:28px;padding-bottom:38px;color:#ddd7c8}.cinema-seo-index summary{cursor:pointer;min-height:44px;font-size:14px}.cinema-seo-index ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 30px}.cinema-seo-index li{padding:15px 0;border-bottom:1px solid #78827855}.cinema-seo-index li a{display:block;font-size:15px}.cinema-seo-index li span{display:block;font-size:12px;color:#b9c3b3;margin-top:6px}@media(max-width:600px){.cinema-seo-index ul{grid-template-columns:1fr}}
 /* Keep the original Chablis artwork clear of the editorial headline. */
-@media(min-width:761px){.cinema-hero.is-chablis .cinema-hero-content{max-width:340px}.cinema-hero.is-chablis h1{font-size:clamp(62px,6vw,82px);line-height:1.02}}
+@media(min-width:761px){.cinema-hero.is-chablis .cinema-hero-content{max-width:620px}.cinema-hero.is-chablis h1{font-size:clamp(56px,5.2vw,84px);line-height:.96}}
 .cinema-page .proposal-nav{position:static;transform:none;max-width:92%;width:fit-content;margin:24px auto;flex-wrap:wrap;justify-content:center}
 @media(max-width:760px){.cinema-hero.is-chablis .cinema-chablis-poster{display:none}.cinema-carousel-controls{flex-wrap:wrap}.cinema-carousel-dots button{min-width:44px;flex-shrink:0}}
 
@@ -1596,8 +1596,8 @@
 .cinema-dossier-texto { grid-area: 1 / 1; position: relative; z-index: 1; display: block; width: min(640px, 45%); margin-left: 6%; padding-block: 40px; }
 .cinema-dossier-kicker { display: flex; align-items: baseline; gap: 16px; margin: 0 0 22px; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--cinema-gold); }
 .cinema-dossier-kicker b { font: 400 22px/1 "Instrument Serif", Georgia, serif; letter-spacing: 0; color: #9a9e97; }
-.cinema-dossier h3 { font: 400 clamp(60px, 6.7vw, 108px)/.92 "Instrument Serif", Georgia, serif; letter-spacing: -2.5px; margin: 0 0 30px; text-shadow: 0 2px 30px rgba(10, 16, 16, .55); }
-.cinema-dossier h3 em { display: block; color: #d9be98; white-space: nowrap; }
+.cinema-dossier h3 { font: 400 clamp(52px, 5.4vw, 84px)/.95 "Instrument Serif", Georgia, serif; letter-spacing: -2.5px; margin: 0 0 30px; text-shadow: 0 2px 30px rgba(10, 16, 16, .55); }
+.cinema-dossier h3 em { display: block; color: #d9be98; }
 .cinema-dossier-excerpt { display: block; margin: 0 0 34px; max-width: 42ch; color: #c5c8c0; font-size: 15px; line-height: 1.75; text-shadow: 0 1px 14px rgba(10, 16, 16, .8); }
 .cinema-dossier-meta { display: flex; justify-content: space-between; align-items: center; gap: 24px; max-width: 420px; padding-top: 14px; border-top: 1px solid rgba(208, 181, 139, .45); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #9a9e97; }
 .cinema-dossier-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--cinema-paper); }
@@ -1671,4 +1671,10 @@
     overflow: hidden;
     clip-path: inset(50%);
   }
+}
+
+/* manchetes do hero com fato (nov 2026): mais longas, em corpo menor e coluna mais larga */
+@media (min-width: 851px) {
+  .cinema-page .cinema-hero-content { max-width: 860px; }
+  .cinema-page .cinema-hero h1 { max-width: 860px; font-size: clamp(56px, 5.4vw, 92px); line-height: .94; }
 }
