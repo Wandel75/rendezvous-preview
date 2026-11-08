@@ -233,7 +233,7 @@ window.RDV_DATA = {
    "duration": "6:51",
    "image": "assets/yt-Fa8v7zUV4DQ.jpg",
    "url": "https://www.youtube.com/watch?v=Fa8v7zUV4DQ",
-   "description": "Um encontro em Saint-Émilion.",
+   "description": "Maître de chai do Château Soutard, ela decide a data da colheita, conduz a vinificação e define as assemblages ao lado de Michel ROLLAND.",
    "views": 2185,
    "uploadDate": "2013-11-12T05:32:37-08:00",
    "pageUrl": "filmes/chateau-soutard-Fa8v7zUV4DQ/"

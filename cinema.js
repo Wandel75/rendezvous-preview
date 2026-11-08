@@ -40,7 +40,7 @@
       OMC0Q5PHGa8: 'Chablis,<br><em>o Chardonnay mais célebre, por inteiro</em>',
       VACW0HGiJU4: 'Caroline FREY,<br><em>do Haut-Médoc ao Rhône</em>',
       fHlo60GJWpM: 'Château Margaux 2012,<br><em>na taça de Paul PONTALLIER</em>',
-      Fa8v7zUV4DQ: 'Véronique CORPORANDY,<br><em>maître de chai do Soutard</em>'
+      Fa8v7zUV4DQ: 'Saint-Émilion,<br><em>por Véronique CORPORANDY</em>'
     };
     hero.querySelector('h1').innerHTML = headlines[video.id] || escape(video.title);
     hero.querySelector('.cinema-hero-intro').textContent = video.description;
